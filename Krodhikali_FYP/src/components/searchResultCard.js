@@ -1,14 +1,7 @@
-import {
-  StyleSheet,
-  ScrollView,
-  Text,
-  TouchableOpacity,
-  View,
-  Image,
-} from "react-native";
+import React from "react";
+import { StyleSheet, ScrollView, Text, View, Image } from "react-native";
 import { colors } from "../Global/styles";
 import { Icon } from "react-native-elements";
-import React from "react";
 
 const SearchResultCard = ({
   name,
@@ -16,161 +9,59 @@ const SearchResultCard = ({
   gmail,
   phonenumber,
   cid,
+  profile_pic,
 }) => {
   return (
-    <View>
+    <View style={styles.container}>
       <ScrollView>
-        <View
-          style={{
-            padding: 10,
-            width: "100%",
-            backgroundColor: "#811331",
-            height: 170,
-          }}
-        ></View>
-        <View style={{ alignItems: "center" }}>
+        <View style={styles.header}></View>
+        <View style={styles.profileContainer}>
           <Image
-            source={require("../images/user.png")}
-            style={{
-              width: 140,
-              height: 140,
-              borderRadius: 100,
-              marginTop: -70,
-            }}
-          ></Image>
-          <Text style={{ fontSize: 25, fontWeight: "bold", padding: 10 }}>
-            {name}
-          </Text>
-        </View>
-
-        <View
-          style={{
-            flexDirection: "row",
-            alignSelf: "center",
-            justifyContent: "center",
-            alignContent: "center",
-            backgroundColor: "#fff",
-            width: "90%",
-            paddingBottom: 25,
-            paddingTop: 25,
-            borderRadius: 10,
-            shadowOpacity: 80,
-            elevation: 15,
-            marginTop: 30,
-            marginBottom: 20,
+            source={{ uri: `https://res.cloudinary.com/dwfhplpuj/${profile_pic}`,
           }}
-        >
-          <Text
-            style={{
-              fontSize: 15,
-              color: colors.grey2,
-              fontWeight: "bold",
-              marginLeft: 10,
-            }}
-          >
-            <Text style={{ fontSize: 20 }}>Transfer Status : </Text>
-            {transfer_status}
-          </Text>
-        </View>
-
-        <View
-          style={{
-            flexDirection: "row",
-            alignSelf: "center",
-            justifyContent: "center",
-            alignContent: "center",
-            backgroundColor: "#fff",
-            width: "90%",
-            paddingBottom: 25,
-            paddingTop: 25,
-            borderRadius: 10,
-            shadowOpacity: 80,
-            elevation: 15,
-            marginTop: 30,
-            marginBottom: 20,
-          }}
-        >
-          <Icon
-            name="align-vertical-bottom"
-            type="material"
-            size={30}
-            color={colors.grey2}
+            style={styles.profileImage}
           />
-          <Text
-            style={{
-              fontSize: 15,
-              color: colors.grey2,
-              fontWeight: "bold",
-              marginLeft: 10,
-            }}
-          >
-            <Text style={{ fontSize: 20 }}>Stages : </Text>
-            {gmail}
-          </Text>
+          <Text style={styles.profileName}>{name}</Text>
         </View>
-        <View
-          style={{
-            flexDirection: "row",
-            alignSelf: "center",
-            justifyContent: "center",
-            alignContent: "center",
-            backgroundColor: "#fff",
-            width: "90%",
-            paddingBottom: 25,
-            paddingTop: 25,
-            borderRadius: 10,
-            shadowOpacity: 80,
-            elevation: 15,
-            marginTop: 30,
-            marginBottom: 20,
-          }}
-        >
-          <Icon name="phone" type="material" size={30} color={colors.grey2} />
-          <Text
-            style={{
-              fontSize: 15,
-              color: colors.grey2,
-              fontWeight: "bold",
-              marginLeft: 10,
-            }}
-          >
-            <Text style={{ fontSize: 20 }}>Phone Number : </Text>
-            {phonenumber}
-          </Text>
-        </View>
-        <View
-          style={{
-            flexDirection: "row",
-            alignSelf: "center",
-            justifyContent: "center",
-            alignContent: "center",
-            backgroundColor: "#fff",
-            width: "90%",
-            paddingBottom: 25,
-            paddingTop: 25,
-            borderRadius: 10,
-            shadowOpacity: 80,
-            elevation: 15,
-            marginTop: 30,
-            marginBottom: 20,
-          }}
-        >
+
+        <View style={styles.infoContainer}>
           <Icon
             name="card-account-details"
             type="material-community"
             size={30}
             color={colors.grey2}
           />
-          <Text
-            style={{
-              fontSize: 15,
-              color: colors.grey2,
-              fontWeight: "bold",
-              marginLeft: 10,
-            }}
-          >
-            <Text style={{ fontSize: 20 }}>CID : </Text>
-            {cid}
+          <Text style={styles.label}>
+            <Text style={styles.labelText}>CID:</Text>{" "}
+            <Text style={styles.labelValue}>{cid}</Text>
+          </Text>
+        </View>
+
+        <View style={styles.infoContainer}>
+          <Text style={styles.label}>
+            <Text style={styles.labelText}>Transfer Status:</Text>{" "}
+            <Text style={styles.labelValue}>{transfer_status}</Text>
+          </Text>
+        </View>
+
+        <View style={styles.infoContainer}>
+          <Icon
+            name="align-vertical-bottom"
+            type="material"
+            size={30}
+            color={colors.grey2}
+          />
+          <Text style={styles.label}>
+            <Text style={styles.labelText}>Stages:</Text>{" "}
+            <Text style={styles.labelValue}>{gmail}</Text>
+          </Text>
+        </View>
+
+        <View style={styles.infoContainer}>
+          <Icon name="phone" type="material" size={30} color={colors.grey2} />
+          <Text style={styles.label}>
+            <Text style={styles.labelText}>Phone Number:</Text>{" "}
+            <Text style={styles.labelValue}>{phonenumber}</Text>
           </Text>
         </View>
       </ScrollView>
@@ -180,4 +71,57 @@ const SearchResultCard = ({
 
 export default SearchResultCard;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    width: "100%",
+    backgroundColor: "#FFF",
+  },
+  header: {
+    backgroundColor: "#811331",
+    height: 170,
+  },
+  profileContainer: {
+    alignItems: "center",
+    marginTop: -70,
+  },
+  profileImage: {
+    width: 140,
+    height: 140,
+    borderRadius: 100,
+  },
+  profileName: {
+    fontSize: 25,
+    fontWeight: "bold",
+    padding: 10,
+  },
+  infoContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#FFF",
+    width: "90%",
+    paddingBottom: 25,
+    paddingTop: 25,
+    borderRadius: 10,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
+    alignSelf: "center",
+    marginTop: 30,
+    marginBottom: 20,
+  },
+  label: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginLeft: 10,
+  },
+  labelText: {
+    fontSize: 20,
+  },
+});

@@ -3,7 +3,7 @@ import React from "react";
 
 import { colors } from "./src/Global/styles";
 import RootNavigator from "./src/navigation/RootNavigator";
-import { Image } from 'cloudinary-react-native';
+import { Image } from "cloudinary-react-native";
 
 export default function App() {
   return (

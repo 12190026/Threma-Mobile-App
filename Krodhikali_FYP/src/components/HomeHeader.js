@@ -1,49 +1,23 @@
-import { View, Text, StyleSheet } from "react-native";
 import React from "react";
-
-import { Icon, withBadge, TouchableOpacity } from "react-native-elements";
+import { View, Text, StyleSheet } from "react-native";
+import { Avatar } from "react-native-elements";
 import { colors, parameters } from "../Global/styles";
 
 export default function HomeHeader({ navigation }) {
-  const BadgeIcon = withBadge(0)(Icon);
-
   return (
     <View style={styles.header}>
-      <View
-        style={{
-          alignItems: "center",
-          justifyContent: "center",
-          marginLeft: 15,
-        }}
-      >
-        <Icon
-          type="material-community"
-          name="menu"
-          color={colors.cardbackground}
-          size={24}
-          onPress={() => {
-            navigation.toggleDrawer();
-          }}
+      <View style={styles.leftContainer}>
+        <Avatar
+          rounded
+          size={40}
+          source={require("../images/logo_k.png")}
+          containerStyle={styles.avatarContainer}
         />
       </View>
-      <View style={{ alignItems: "center", justifyContent: "center" }}>
-        <Text
-          style={{
-            color: colors.cardbackground,
-            fontSize: 20,
-            fontWeight: "bold",
-          }}
-        >
-          GADHIKHAR THROEMA
-        </Text>
+      <View style={styles.centerContainer}>
+        <Text style={styles.title}>GADHIKHAR THROEMA</Text>
       </View>
-      <View
-        style={{
-          alignItems: "center",
-          justifyContent: "center",
-          marginRight: 15,
-        }}
-      ></View>
+      <View style={styles.rightContainer}></View>
     </View>
   );
 }
@@ -52,7 +26,31 @@ const styles = StyleSheet.create({
   header: {
     flexDirection: "row",
     backgroundColor: "#811331",
-    height: parameters.headerHeight,
+    height: 50,
     justifyContent: "space-between",
+    alignItems: "center",
+    paddingHorizontal: 20,
+  },
+  leftContainer: {
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  centerContainer: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  rightContainer: {
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  avatarContainer: {
+    borderWidth: 2,
+    borderColor: colors.pagebackground,
+  },
+  title: {
+    color: colors.cardbackground,
+    fontSize: 20,
+    fontWeight: "bold",
   },
 });

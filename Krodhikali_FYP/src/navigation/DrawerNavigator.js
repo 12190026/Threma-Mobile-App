@@ -18,7 +18,7 @@ export default function DrawerNavigator() {
         component={RootClientTabs}
         options={{
           headerShown: false,
-          title: "Home",
+          title: "Activity",
           drawerIcon: ({ focussed, size }) => (
             <Icon
               type="material-community"

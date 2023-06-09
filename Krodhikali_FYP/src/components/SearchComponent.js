@@ -30,7 +30,9 @@ export default function SearchComponent() {
 
   const fetchData = async () => {
     try {
-      const response = await fetch("https://threma-app.onrender.com/api/practitioners/");
+      const response = await fetch(
+        "https://threma-app.onrender.com/api/practitioners/"
+      );
       const result = await response.json();
       setData(result);
       setFilteredData(result);

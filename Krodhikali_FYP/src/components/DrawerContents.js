@@ -24,14 +24,14 @@ export default function DrawerContents(props, { navigation }) {
   return (
     <View style={styles.container}>
       <DrawerContentScrollView {...props}>
-        <View style={{ marginTop: 0 }}>
+        <View style={{ marginTop: -5 }}>
           <View
             style={{
               flexDirection: "row",
               alignItems: "center",
               backgroundColor: colors.buttons,
               paddingLeft: 20,
-              paddingVertical: 10,
+              paddingVertical: 15,
             }}
           >
             <Avatar

@@ -1,46 +1,33 @@
-import { Text, StyleSheet, View, ImageBackground } from "react-native";
 import React from "react";
-
+import { Text, StyleSheet, View, ImageBackground } from "react-native";
 import { colors } from "../Global/styles";
-
 import { Icon } from "react-native-elements";
 
 export default function AboutHeader({ navigation, id }) {
   return (
     <View style={styles.container}>
       <ImageBackground
-        style={styles.container}
-        source={require("../images/activity.jpg")}
+        style={styles.backgroundImage}
+        source={require("../images/dd.jpg")}
       >
-        <View style={styles.View1}>
-          <View style={styles.view2}>
-            <Icon
-              name="arrow-left"
-              type="material-community"
-              color={colors.black}
-              size={25}
-              onPress={() => navigation.goBack()}
-            />
+        <View style={styles.overlay}>
+          <View style={styles.headerContainer}>
+            <View style={styles.backButton}>
+              <Icon
+                name="arrow-left"
+                type="material-community"
+                color={colors.black}
+                size={30}
+                onPress={() => navigation.goBack()}
+              />
+            </View>
           </View>
-        </View>
-        <View
-          style={{
-            marginTop: 0,
-            marginLeft: 50,
-            marginRight: 50,
-
-            backgroundColor: "rgba(52, 52, 52, 0.8)",
-            padding: 2,
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          <Text style={styles.imageText}>ALWAYS OPEN YOUR</Text>
-          <Text style={styles.imageText}>MIND FIRST</Text>
-          <Text style={styles.imageText}>THAN OPEN YOUR MOUTH</Text>
-          <Text style={{ color: colors.grey4, marginTop: 5 }}>
-            - Dungsay Garab Rinpochoe
-          </Text>
+          <View style={styles.contentContainer}>
+            <Text style={styles.imageText}>ALWAYS OPEN YOUR</Text>
+            <Text style={styles.imageText}>MIND FIRST</Text>
+            <Text style={styles.imageText}>THEN OPEN YOUR MOUTH</Text>
+            <Text style={styles.authorText}>- Dungsay Garab Rinpoche</Text>
+          </View>
         </View>
       </ImageBackground>
     </View>
@@ -51,39 +38,43 @@ const styles = StyleSheet.create({
   container: {
     height: 160,
   },
-  View1: {
-    flexDirection: "row",
-    alignItems: "baseline",
-    justifyContent: "space-between",
+  backgroundImage: {
+    flex: 1,
+    resizeMode: "cover",
+    justifyContent: "center",
   },
-  view2: {
-    margin: 10,
-    width: 40,
-    height: 40,
+  overlay: {
+    flex: 1,
+    backgroundColor: "rgba(52, 52, 52, 0.6)",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  headerContainer: {
+    position: "absolute",
+    top: 16,
+    left: 16,
+  },
+  backButton: {
     backgroundColor: colors.cardbackground,
-    alignItems: "center",
-    justifyContent: "center",
-    borderRadius: 20,
-    flexDirection: "row",
+    borderRadius: 30,
+    padding: 8,
   },
-  view3: {
-    marginTop: 0,
-    margin: 10,
-    width: 40,
-    height: 40,
-    backgroundColor: colors.cardbackground,
+  contentContainer: {
     alignItems: "center",
     justifyContent: "center",
-    borderRadius: 20,
-  },
-  view4: {
-    marginTop: 0,
-    alignItems: "center",
-    justifyContent: "center",
+    paddingHorizontal: 16,
   },
   imageText: {
-    fontSize: 16,
+    fontSize: 24,
     fontWeight: "bold",
     color: colors.grey5,
+    marginBottom: 8,
+    textAlign: "center",
+  },
+  authorText: {
+    fontSize: 14,
+    fontWeight: "bold",
+    color: colors.grey4,
+    marginTop: 8,
   },
 });

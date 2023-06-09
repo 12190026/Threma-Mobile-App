@@ -51,28 +51,28 @@ export const activitiesData = [
 
 export const galleryData = [
   {
-    images: require("../images/background.jpg"),
+    images: require("../images/a.jpg"),
 
     id: 0,
   },
   {
-    images: require("../images/background.jpg"),
+    images: require("../images/aa.jpg"),
 
     id: 1,
   },
   {
-    images: require("../images/background.jpg"),
+    images: require("../images/aaa.jpg"),
 
     id: 2,
   },
   {
-    images: require("../images/background.jpg"),
+    images: require("../images/d.jpg"),
 
     id: 3,
   },
 
   {
-    images: require("../images/background.jpg"),
+    images: require("../images/dd.jpg"),
 
     id: 4,
   },

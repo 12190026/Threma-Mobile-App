@@ -1,5 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { StyleSheet, View, FlatList, ActivityIndicator, Text } from "react-native";
+import {
+  StyleSheet,
+  View,
+  FlatList,
+  ActivityIndicator,
+  Text,
+} from "react-native";
 import SearchResultCard from "../components/searchResultCard";
 import { colors } from "../Global/styles";
 
@@ -9,37 +15,36 @@ const SearchResultScreen = ({ route }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Fetch practitioner data from the API
-    fetch("https://threma-app.onrender.com/api/practitioners/")
+    fetchTransferData(); // Fetch transfer status data
+  }, []);
+
+  const fetchTransferData = () => {
+    fetch("https://threma-app.onrender.com/api/transfers/")
       .then((response) => response.json())
-      .then((practitionerData) => {
-        // Fetch transfer status data from the API
-        fetch("https://threma-app.onrender.com/api/transfers/")
-          .then((response) => response.json())
-          .then((transferData) => {
-            // Merge practitioner data and transfer status data
-            const updatedData = practitionerData.map((practitioner) => {
-              const transferStatusData = transferData.find(
-                (status) => status.practitioner === practitioner.cid
-              );
-              return {
-                ...practitioner,
-                transfer_status: transferStatusData ? transferStatusData.status : "None",
-              };
-            });
-            setData(updatedData);
-            setLoading(false);
-          })
-          .catch((error) => {
-            console.error(error);
-            setLoading(false);
-          });
+      .then((transferData) => {
+        mergeData(filteredData, transferData); // Merge filtered data with transfer status data
       })
       .catch((error) => {
         console.error(error);
         setLoading(false);
       });
-  }, []);
+  };
+
+  const mergeData = (practitionerData, transferData) => {
+    const updatedData = practitionerData.map((practitioner) => {
+      const transferStatusData = transferData.find(
+        (status) => status.practitioner === practitioner.cid
+      );
+      return {
+        ...practitioner,
+        transfer_status: transferStatusData
+          ? transferStatusData.status
+          : "None",
+      };
+    });
+    setData(updatedData);
+    setLoading(false);
+  };
 
   if (loading) {
     return (
@@ -70,7 +75,9 @@ const SearchResultScreen = ({ route }) => {
             gmail={item.stage_of_threma}
             phonenumber={item.contact_no}
             cid={item.cid}
+            profile_pic={item.profile_pic} // Add this line
           />
+
         )}
         showsVerticalScrollIndicator={false}
       />

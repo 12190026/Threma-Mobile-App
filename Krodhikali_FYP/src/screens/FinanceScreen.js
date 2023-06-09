@@ -64,17 +64,20 @@ export default function FinanceScreen({ navigation }) {
               </TouchableOpacity>
             ))}
           </ScrollView>
-          {selectedYear && (
-            <Image
-              source={{
-                uri: `https://res.cloudinary.com/dwfhplpuj/${financialData.find(
-                  (item) => item.year === selectedYear
-                ).image}`,
-              }}
-              style={styles.image}
-              resizeMode="contain"
-            />
-          )}
+          <View style={styles.imageContainer}>
+            {selectedYear && (
+              <Image
+                source={{
+                  uri: `https://res.cloudinary.com/dwfhplpuj/${
+                    financialData.find((item) => item.year === selectedYear)
+                      .image
+                  }`,
+                }}
+                style={styles.image}
+                resizeMode="contain"
+              />
+            )}
+          </View>
         </View>
       </ScrollView>
     </View>
@@ -121,14 +124,18 @@ const styles = StyleSheet.create({
   },
   yearButtonText: {
     fontSize: 16,
-    color: "#FFFFFF", 
+    color: "#FFFFFF",
   },
   selectedYearButtonText: {
     color: colors.text,
   },
+  imageContainer: {
+    alignItems: "center",
+    justifyContent: "center",
+    marginVertical: 10,
+  },
   image: {
     width: SCREEN_WIDTH - 40,
-    marginVertical: 10,
     borderRadius: 10,
     aspectRatio: 1,
   },
