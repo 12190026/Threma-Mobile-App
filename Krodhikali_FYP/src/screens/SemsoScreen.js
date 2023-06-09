@@ -71,7 +71,7 @@ export default function SemsoScreen({ navigation }) {
         <View style={{ width: SCREEN_WIDTH, paddingTop: 10 }}>
             {cardsToShow.map((item) => (
               <View
-                key={item.id}
+                key={item.semso_id}
                 style={{
                   paddingBottom: 15,
                   alignItems: "center",
